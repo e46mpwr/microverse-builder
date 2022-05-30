@@ -1,4 +1,4 @@
-// Copyright 2021 by Croquet Corporation, Inc. All Rights Reserved.
+// Copyright 2022 by Croquet Corporation, Inc. All Rights Reserved.
 // https://croquet.io
 // info@croquet.io
 
@@ -9,13 +9,13 @@ export function init(Constants) {
 
     Constants.SystemBehaviorDirectory = "behaviors/croquet";
     Constants.SystemBehaviorModules = [
-        "menu.js", "elected.js", "propertySheet.js", "stickyNote.js", "rapier.js", "avatar.js"
+        "menu.js", "elected.js", "propertySheet.js", "stickyNote.js", "rapier.js", "avatar.js", "pdfview.js"
     ];
 
     Constants.UserBehaviorDirectory = "behaviors/default";
     Constants.UserBehaviorModules = [
         "demo.js", "bitcoinTracker.js", "flightTracker.js", "spin.js", "lights.js",
-        "slides.js", "cascade.js",
+        "slides.js", "cascade.js", "bouncingBall.js"
     ];
 
     Constants.UseRapier = true;
@@ -26,7 +26,8 @@ export function init(Constants) {
     const baseY = 6;
     const wallHeight = 3;
     const wallThick = 0.2;
-    const bt = [-20, baseY, 48]; // bt for base translation
+    const bt = [-20, baseY, 64]; // bt for base translation
+
     const baseSize = [20, 1, 20];
     const half = baseSize[0] / 2;
     const wallBase = bt[1] + wallHeight / 2 + baseSize[1] / 2;
@@ -47,7 +48,7 @@ export function init(Constants) {
                 placeholder: true,
                 placeholderSize: [100, 0.01, 100],
                 placeholderColor: 0xcccccc,
-                placeholderOffset: [0, -1.7, 0],
+                placeholderOffset: [0, 0, 0],
 
             }
         },
@@ -166,9 +167,9 @@ export function init(Constants) {
         {
             card: {
                 name:"bouncinglogo",
-                className: "BouncingLogo",
                 translation: [-4, cardHeight, -35],
                 rotation: [0, Math.PI / 2, 0],
+                behaviorModules: ["BouncingBall"],
                 scale: [4, 4, 4],
                 width: 1,
                 height: 1,
@@ -359,10 +360,25 @@ export function init(Constants) {
                 name:"base 2",
                 type: "object",
                 layers: ["pointer", "walk"],
-                translation: [bt[0], -0.9588848050836909, bt[2] - 13.3],
+                translation: [bt[0], -0.30484568847637494, bt[2] - 11.772],
                 rotation: [-Math.PI / 8, 0, 0],
                 behaviorModules: ["Rapier", "Cascade"],
-                rapierSize: [baseSize[0], baseSize[1], baseSize[2] / 2],
+                rapierSize: [baseSize[0], baseSize[1], baseSize[2] / 3],
+                color: 0x997777,
+                rapierShape: "cuboid",
+                rapierType: "positionBased",
+                shadow: true,
+            }
+        },
+        {
+            card: {
+                name:"base 3",
+                type: "object",
+                layers: ["pointer", "walk"],
+                translation: [bt[0], -2.11649335743053, bt[2] - 22.29],
+                rotation: [0, 0, 0],
+                behaviorModules: ["Rapier", "Cascade"],
+                rapierSize: [baseSize[0], baseSize[1], baseSize[2] / 3],
                 color: 0x997777,
                 rapierShape: "cuboid",
                 rapierType: "positionBased",

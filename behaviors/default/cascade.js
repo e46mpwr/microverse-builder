@@ -276,10 +276,11 @@ class SprayActor {
         let z = Math.random() * -100;
         let shape;
         let size;
+        let density;
 
         let dice = Math.random();
 
-        if (dice < 0.1) {
+        if (dice < 0.01) {
             /*
               The FlightTracker behavior is used, but without the "Elected" behavior, it does not start fetching the live data. It is used solely to create the Earth appearance.
             */
@@ -293,12 +294,13 @@ class SprayActor {
                 rapierSize: 2,
                 rapierShape: "ball",
                 rapierForce: {x, y: 100, z},
+                density: 10,
                 shadow: true,
             });
             return;
         }
 
-        if (dice < 0.2) {
+        if (dice < 0.02) {
             /*
               Any card that has different behaviors can participate in the
               simulation by having the "Rapier" and in this case the "Cascade"
@@ -328,6 +330,7 @@ class SprayActor {
         if (dice < 0.6) {
             shape = "cuboid";
             size = [1, 1, 1];
+            density: 1.5;
         } else {
             /*
               uncomment to add cylinder to the simulation.
@@ -338,7 +341,9 @@ class SprayActor {
             }*/
             shape = "ball";
             size = 2;
+            density = 0.4;
         }
+
 
         this.createCard({
             type: "object",
@@ -348,6 +353,7 @@ class SprayActor {
             rapierSize: size,
             rapierForce: {x, y: 100, z},
             rapierShape: shape,
+            rapierDensity: density,
             color: color,
             shadow: true,
         });

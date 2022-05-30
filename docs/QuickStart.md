@@ -69,6 +69,8 @@ Start the local servers.  In the same terminal window, run `npm start` to start 
 
 This will start two servers. The first is the file server on localhost:9684. The second is the watch-server that enables you to inject code changes into a running session.
 
+We use the port 9684 for the file server and the port 9011 for the watch server. Make sure that your local fire wall (Windows Defender on Windows or Firewall system preferences on Mac) allows connections to those ports.
+
 The servers can be run independently as well.
 * `npm run file-server` starts the file server.
 * `npm run watch-server` starts the watch-server.
@@ -89,13 +91,15 @@ If you have another device on the local network and the computer is visible from
 
 ### Deployment
 
-You can copy all files in `behaviors`, `assets`, `lib`, `meta`, and `worlds` along with `index.html` and `apiKey.js` to your publicly accessible HTTP server to have your own deployment. You can also use a hosting services such as Netlify and Vercel, which let you connect your Github repository to automate deployment. Note that the auto generated default apiKey for your Croquet account allows anybody to use it from any site.  In order to protect your API key from unauthorized use, you should create a new apiKey with URL restriction limited to your site.
+You can copy all files in `behaviors`, `assets`, `lib`, `meta`, and `worlds` along with `index.html` and `apiKey.js` to your publicly accessible HTTP server to have your own deployment. You can also use a hosting services such as Netlify and Vercel, which let you connect your GitHub repository to automate deployment. Note that the auto generated default apiKey for your Croquet account allows anybody to use it from any site.  In order to protect your API key from unauthorized use, you should create a new apiKey with URL restriction limited to your site.
 
 Many of files in the `assets` directory are used for the default demo worlds and may not be necessary for your own world.  You can safely remove them from your deployment if you are not using them.
 
 ### Updates
 
-Croquet will continuously update this repository with new features and bug fixes. Most of files affected will be under the `lib` and `assets` directory but occasionally some files in the worlds, including `default.js`, will be modified. If you edit `default.js` in your clone, fetching upstream updates may cause conflicts. Making your world file under a different name and launching it with the URL option `?world=` can avoid conflicts.  However, the recommended approach is to merge our changes into your version of `default.js`.
+Croquet will continuously update this repository with new features and bug fixes. Most of the files affected will be under the `lib` and `assets` directory but occasionally some files in the worlds, including `default.js`, will be modified. If you edit `default.js` in your clone, fetching upstream updates may cause conflicts. Making your world file under a different name and launching it with the URL option `?world=` can avoid conflicts.
+
+Keep it in mind that occasionally we push a commit that updates the file server or the watch server (those are only external dependencies). When an update appears to break them please re-run `npm install` to see if that fixes the issue.
 
 ## Resources
 ---
