@@ -51,7 +51,7 @@ The rotation of the card in quaternion.
 ### `_scale`
 `Array<number, number, number>`
 
-The scale of the card in three axies.
+The scale of the card in three axes.
 
 ### `_layers`
 `Array<string>`
@@ -60,10 +60,10 @@ Layers specifies how the card is treated when a special action is taken. Typical
 
 * "walk": The avatar stays on the geometry of the card.
 * "pointer": The pointer action is enabled.
-* "portal": the avatar tests if the card it is going through needs to take the avatar to a connect world.
+* "portal": the avatar tests if the card it is going through needs to take the avatar to a connected world.
 
 ### `_parent`
-The cards in the world are organized in a hierarchical parent-children structure. The `_parent` specifies its parent. Note that this is a "logical" structure. All cards are held as a direct child of the Three.JS scene, with automtic matrix composition for nested cards.
+The cards in the world are organized in a hierarchical parent-children structure. The `_parent` specifies its parent. Note that this is a "logical" structure. All cards are held as a direct child of the Three.JS scene, with automatic matrix composition for nested cards.
 
 ### `_behaviorModules`
 `Array<string>`
@@ -87,7 +87,13 @@ Any other values that the CardActor holds are stored in an object stored in the 
 
 ### `createCard(cardSpec:object):CardActor`
 
-This method creates a new card (a CardActor on the model side and a CardPawn on the view side), according tbased on the `cardSpec`.
+This method creates a new card (a CardActor on the model side and a CardPawn on the view side), based on the `cardSpec`.
+
+### `queryCards(options?:{behaviorName?:string, methodName:string}, requestor?:Actor):Array<CardActor>
+
+This method queries all existing cards in the world. When options is not speficied, all card actors are returned as an array. If options and reequestor are specified, you can filter them based on the boolean-valued method specified by behaviorName and methodName on the requestor.
+
+If behaviorName is specified, a behavior method attached to requestor, specified by the behaviorName and methodName is invoked for each card. If only methodName is specified, the method from the base CardActor is invoked for each card. The method is expected to return a boolean value, and used to filter the list of cards to be returned.
 
 ### `destroy()`
 
@@ -125,7 +131,9 @@ This method updates some elements in the `_cardData` object. The current value a
 ### `addEventListener(eventName:EventName, listener:function|string)`
 `type EventName = "pointerDown"|"pointerUp"|pointerMove"|"pointerTap"|"pointerLeave"|"pointerEnter"|"wheel"|"doubleDown"|"click"|"keyUp"|"keyDown"`
 
-This method adds a "listener" to be invoked when an event occures on the card.  When `listener` is a function, it has to have a form of `this.mthName` where `mthName` is an existing method name of CardActor or the behavior itself. When listener is a string, it has to be the name of a method at CardActor or the behavior itself. The listener added by this Actor-side `addEventListener()` is invoked when any user in the world causes the corresponding user pointer or key event.
+This method adds a "listener" to be invoked when an event occurs on the card.  When `listener` is a function, it has to have a form of `this.mthName` where `mthName` is an existing method name of CardActor or the behavior itself. When listener is a string, it has to be the name of a method at CardActor or the behavior itself. The listener added by this Actor-side `addEventListener()` is invoked when any user in the world causes the corresponding user pointer or key event.
+
+The pointerTap event is generated when a pointerUp event occurs close in time (< 300ms) and space (< 1 0pixels) to the corresponding pointerDown event. Then first the pointerTap event is sent before the pointerUp.
 
 Calling this method with the same arguments removes the previous listener before adding the new one. This semantics ensures that dynamically-modified method will be used.
 
@@ -226,7 +234,7 @@ this.future(20).call("Module$Behavior", "mth");
 ### `addEventListener(eventName:EventName, listener:function|string)`
 `type EventName = "pointerDown"|"pointerUp"|pointerMove"|"pointerTap"|"pointerLeave"|"pointerEnter"|"wheel"|"doubleDown"|"click"|"keyUp"|"keyDown"`
 
-This method adds a "listener" to be invoked when an event occures on the pawn of a card. When `listener` is a string, it has to have the name of an existing method of CardPawn or the behavior itself. (Internally the function object is stored in the event listener data structure.)
+This method adds a "listener" to be invoked when an event occurs on the pawn of a card. When `listener` is a string, it has to have the name of an existing method of CardPawn or the behavior itself. (Internally the function object is stored in the event listener data structure.)
 
 Calling this with the same arguments (thus the string form) removes the previous listener and then add the new one. This semantics ensures that dynamically-modified method will be used.
 
@@ -256,6 +264,11 @@ This method publishes a Croquet event in the scope of `this.actor._parent.id` if
 ### `listenDeck(message:string, listener:function|string)`
 
 This method subscribes a Croquet event in the scope of `this.actor._parent.id` if `this.actor._parent` is not undefined, or in `this.actor.id` if it is undefined. Note that `this.parent` is resolved at the first time it is called, and any change to `this.actor._parent` will not update the subscription.
+
+
+### `addUpdateRequest(array:Array<behaviorName, methodName>)`
+
+A pawn behavior can request a method callback when CardPawn's `update()` method is invoked. behaviorName and methodName will be "registered in the pawn, and for each `update()` call, the behavior method is invoked.
 
 ### `roundedCornerGeometry(width:number, height:number, depth:number, cornerRadius:number):Geometry`
 

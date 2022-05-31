@@ -1,4 +1,4 @@
-// Copyright 2021 by Croquet Corporation, Inc. All Rights Reserved.
+// Copyright 2022 by Croquet Corporation, Inc. All Rights Reserved.
 // https://croquet.io
 // info@croquet.io
 
@@ -9,7 +9,7 @@ export function init(Constants) {
 
     Constants.SystemBehaviorDirectory = "behaviors/croquet";
     Constants.SystemBehaviorModules = [
-        "menu.js", "elected.js", "propertySheet.js", "stickyNote.js", "avatar.js"
+        "menu.js", "elected.js", "propertySheet.js", "stickyNote.js", "avatarEvents.js"
     ];
 
     Constants.UserBehaviorDirectory = "behaviors/financial";

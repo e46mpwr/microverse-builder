@@ -12,26 +12,31 @@ export function init(Constants) {
         "menu.js", "elected.js", "propertySheet.js", "stickyNote.js", "avatarEvents.js"
     ];
 
-    Constants.UserBehaviorDirectory = "behaviors/default";
+    Constants.UserBehaviorDirectory = "behaviors/campus";
     Constants.UserBehaviorModules = [
-        "lights.js"
+        "lights.js", "livemap.js"
     ];
-
-    // const frameColor = 0x888888;
 
     Constants.DefaultCards = [
         {
             card: {
                 name:"world model",
+                dataScale: [9, 9, 9],
+                dataTranslation: [108, -17.5, -128],
+                dataRotation: [0, Math.PI / 12 * 5, 0],
+                // dataTranslation: [22, -10.7, -20],
                 layers: ["walk"],
                 type: "3d",
+                dataLocation: "3Ep4wIDFLOzFTJAw0JPxevGXaAv1FM_VZ1jSCqYN7R4ELTExNTZ_amojLCkgNmswNmsmNyo0MCAxaywqajBqAiETJzwpDDYELhQmBx0hdgI9JDM8MhAOEhwcd2osKmsmNyo0MCAxaygsJjcqMyA3NiBqEXAGci8jHHMhFg8JLgwVADwwMTU1CjcsCj8Rd3c9M3J8DCcXN3x3LTFwHGohJDEkaicHfCd3KXYsDAMyCxQENgILHHwLPQo2DHIgKzYCdHANBjQEInEBLQFycnE",
+                modelType: "glb",
                 singleSided: true,
                 shadow: true,
-                translation:[0, -1.7, 0],
-                placeholder: true,
-                placeholderSize: [400, 0.1, 400],
-                placeholderColor: 0x808080,
-                placeholderOffset: [0, 0, 0],
+
+                placeholder: false,
+                placeholderSize: [100, 0.01, 100],
+                placeholderColor: 0xcccccc,
+                placeholderOffset: [0, -1.7, 0],
+
             }
         },
         {
@@ -44,5 +49,13 @@ export function init(Constants) {
                 dataType: "jpg",
             }
         },
+        {
+            card: {
+                name: "live map",
+                layers: ["pointer"],
+                type: "object",
+                behaviorModules: ["CampusMap"],
+            }
+        }
     ];
 }

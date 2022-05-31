@@ -1,4 +1,4 @@
-// Copyright 2021 by Croquet Corporation, Inc. All Rights Reserved.
+// Copyright 2022 by Croquet Corporation, Inc. All Rights Reserved.
 // https://croquet.io
 // info@croquet.io
 
@@ -9,7 +9,7 @@ export function init(Constants) {
 
     Constants.SystemBehaviorDirectory = "behaviors/croquet";
     Constants.SystemBehaviorModules = [
-        "menu.js", "elected.js", "propertySheet.js", "stickyNote.js", "avatar.js"
+        "menu.js", "elected.js", "propertySheet.js", "stickyNote.js", "avatarEvents.js"
     ];
 
     Constants.UserBehaviorDirectory = "behaviors/default";
@@ -33,9 +33,9 @@ export function init(Constants) {
                 shadow: true,
 
                 placeholder: true,
-                placeholderSize: [100, 1, 100],
+                placeholderSize: [100, 0.1, 100],
                 placeholderColor: 0xcccccc,
-                placeholderOffset: [0, -1.7, 0],
+                placeholderOffset: [0, 0, 0],
             }
         },
         {
@@ -56,7 +56,6 @@ export function init(Constants) {
                 className: "PortalActor",
                 translation: [0, 0, -5],
                 rotation: [0, 0, 0],
-                depth: 0.05,
                 type: "2d",
                 layers: ["pointer", "portal"],
                 behaviorModules: ["Spin"],
@@ -66,10 +65,12 @@ export function init(Constants) {
                 frameColor: frameColor,
                 width: 4,
                 height: 4,
+                depth: 0.2,
                 cornerRadius: 0.05,
                 shadow: true,
                 multiuser: true,
                 portalURL: "?world=default",
+                sparkle: true,
             }
         },
     ];
