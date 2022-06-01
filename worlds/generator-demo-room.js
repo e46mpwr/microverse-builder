@@ -69,13 +69,13 @@ export function init(Constants) {
             card: {
                 name: "generator card",
                 //translation: [10, -1.47, 0],
-                translation: [0, -1.47, -10],
+                translation: [0, -1.6682674879254782, -10],
                 rotation: [0, Math.PI ,0],
                 //rotation: [0,0.7,0,0.7],
                 type: "3d",
                 dataLocation: "./assets/3D/PowerGen.glb",
                 modelType: "glb",
-                layers:["pointer"],
+                layers:["pointer", "walk"],
             }
         }, 
         {
