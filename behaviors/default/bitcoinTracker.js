@@ -160,11 +160,11 @@ class BitcoinTrackerPawn {
         ctx.fillStyle = color;
 
         ctx.font = "40px Arial";
-        ctx.fillText("BTC-USD", this.canvas.width - 40, 85);
+        ctx.fillText("KVA", this.canvas.width - 40, 85);
 
         ctx.textAlign = 'center';
         ctx.font = "90px Arial";
-        ctx.fillText("$" + amount.toFixed(2), this.canvas.width / 2, 100); //50+this.canvas.height/2);
+        ctx.fillText("   " + amount.toFixed(2), this.canvas.width / 2, 100); //50+this.canvas.height/2);
         this.texture.needsUpdate = true;
         this.sayDeck('setColor', color);
     }
