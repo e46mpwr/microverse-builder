@@ -82,7 +82,7 @@ export function init(Constants) {
             card: {
                 name: "bitcointracker",
                 //translation: [9.175, -0.145, 1.075],
-                translation: [1.0825, -0.140, -9.175],
+                translation: [1.0825, -0.3445, -9.175],
                 rotation: [0, 0, 0],
                 scale: [0.75, 0.75, 0.75],
                 type: "2d",
