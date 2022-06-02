@@ -50,13 +50,30 @@ export function init(Constants) {
         },
         {
             card: {
-                name: "image card",
-                translation: [0, 2.05, -10],
+                name: "croquet logo card",
+                translation: [-1.8, 1.8, -10],
                 //rotation: [0, Math.PI / 2, 0],
                 scale: [4, 4, 4],
                 type: "2d",
                 textureType: "image",
                 textureLocation: "./assets/images/CroquetLogo_RGB.jpg",
+                fullBright: true,
+                frameColor: 0xcccccc,
+                color: 0xffffff,
+                cornerRadius: 0.05,
+                depth: 0.05,
+                shadow: true,
+            }
+        },
+        {
+            card: {
+                name: "orange logo card",
+                translation: [1.5, 1.8, -10],
+                //rotation: [0, Math.PI / 2, 0],
+                scale: [2.5, 2.5, 2.5],
+                type: "2d",
+                textureType: "image",
+                textureLocation: "./assets/images/Orange.png",
                 fullBright: true,
                 frameColor: 0xcccccc,
                 color: 0xffffff,
