@@ -4,7 +4,6 @@ const fs = require('fs');
 const fileName='./apiKey.js';
 const text='const apiKey = "' + process.env.CROQUET_APIKEY +'";\n' +
            'const appId = "' + process.env.CROQUET_APPID + '";\n' +
-           'export default {apiKey, appId};\n' +
            'const name = "foo";\n' +
            'const password = "supersecretpassword";\n' +
            'export default {apiKey, appId, name, password};\n' +
