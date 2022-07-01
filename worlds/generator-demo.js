@@ -73,7 +73,7 @@ export function init(Constants) {
                 depth: 0.05,
                 cornerRadius: 0.05,
                 multiuser: true,
-                portalURL: "https://www.croquet.io/microverse/?world=factory",
+                portalURL: "www.croquet.io/microverse/?world=factory",
             }
         },
         
