@@ -5,7 +5,7 @@
 
 export function init(Constants) {
     Constants.AvatarNames = [
-        "newwhite", "madhatter", "marchhare", "queenofhearts", "cheshirecat", "alice"
+        "rpm", "madhatter", "marchhare", "queenofhearts", "cheshirecat", "alice"
     ];
 
     Constants.SystemBehaviorDirectory = "behaviors/croquet";
